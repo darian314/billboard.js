@@ -36,7 +36,7 @@ const nodeToSvgDataUrl = (node, size) => {
 
 	// foreignObject not supported in IE11 and below
 	// https://msdn.microsoft.com/en-us/library/hh834675(v=vs.85).aspx
-	const dataStr = `<svg xmlns="${d3Namespaces.svg}" width="${size.width}" height="${size.height}">
+	const dataStr = `<svg xmlns="${d3Namespaces.svg}" width="${size.width*1.6}" height="${size.height*1.6}">
 			<foreignObject width="100%" height="100%">
 				<style>${cssText.join("\n")}</style>
 				${nodeXml.replace(/(url\()[^#]+/g, "$1")}
@@ -86,8 +86,8 @@ extend(Chart.prototype, {
 				const canvas = document.createElement("canvas");
 				const ctx = canvas.getContext("2d");
 
-				canvas.width = size.width * 1.4;
-				canvas.height = size.height * 1.4;
+				canvas.width = size.width * 1.6;
+				canvas.height = size.height * 1.6;
 				ctx.drawImage(img, 0, 0);
 
 				callback(canvas.toDataURL(mimeType));
