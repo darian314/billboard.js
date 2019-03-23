@@ -24383,7 +24383,7 @@ var b64EncodeUnicode = function (str) {
   });
   clone.setAttribute("xmlns", namespaces.xhtml);
   var nodeXml = new XMLSerializer().serializeToString(clone),
-      dataStr = "<svg xmlns=\"".concat(namespaces.svg, "\" width=\"").concat(size.width, "\" height=\"").concat(size.height, "\">\n\t\t\t<foreignObject width=\"100%\" height=\"100%\">\n\t\t\t\t<style>").concat(cssText.join("\n"), "</style>\n\t\t\t\t").concat(nodeXml.replace(/(url\()[^#]+/g, "$1"), "\n\t\t\t</foreignObject></svg>").replace("/\n/g", "%0A"); // foreignObject not supported in IE11 and below
+      dataStr = "<svg xmlns=\"".concat(namespaces.svg, "\" width=\"").concat(size.width * 1.6, "\" height=\"").concat(size.height * 1.6, "\">\n\t\t\t<foreignObject width=\"100%\" height=\"100%\">\n\t\t\t\t<style>").concat(cssText.join("\n"), "</style>\n\t\t\t\t").concat(nodeXml.replace(/(url\()[^#]+/g, "$1"), "\n\t\t\t</foreignObject></svg>").replace("/\n/g", "%0A"); // foreignObject not supported in IE11 and below
   // https://msdn.microsoft.com/en-us/library/hh834675(v=vs.85).aspx
 
   return "data:image/svg+xml;base64,".concat(b64EncodeUnicode(dataStr));
@@ -24436,7 +24436,7 @@ util_extend(Chart_Chart.prototype, {
       img.crosssOrigin = "Anonymous", img.onload = function () {
         var canvas = document.createElement("canvas"),
             ctx = canvas.getContext("2d");
-        canvas.width = size.width * 1.4, canvas.height = size.height * 1.4, ctx.drawImage(img, 0, 0), callback(canvas.toDataURL(mimeType));
+        canvas.width = size.width * 1.6, canvas.height = size.height * 1.6, ctx.drawImage(img, 0, 0), callback(canvas.toDataURL(mimeType));
       }, img.src = svgDataUrl;
     }
 
