@@ -73,9 +73,9 @@ extend(Chart.prototype, {
 	 *     document.body.appendChild(link);
 	 *  });
 	 */
-	export(mimeType, callback) {
+	export(mimeType, scale, callback) {
 		const $$ = this.internal;
-		const size = {width: ($$.currentWidth * 1.6), height: ($$.currentHeight * 1.6)};
+		const size = {width: $$.currentWidth, height: $$.currentHeight};
 		const svgDataUrl = nodeToSvgDataUrl(this.element, size);
 		
 		if (isFunction(callback)) {
@@ -88,7 +88,7 @@ extend(Chart.prototype, {
 
 				canvas.width = size.width;
 				canvas.height = size.height;
-				ctx.drawImage(img, 0, 0);
+				ctx.drawImage(img, 0, 0, (size.width * scale), (size.height * scale));
 
 				callback(canvas.toDataURL(mimeType));
 			};
