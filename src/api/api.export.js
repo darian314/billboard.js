@@ -86,8 +86,8 @@ extend(Chart.prototype, {
 				const canvas = document.createElement("canvas");
 				const ctx = canvas.getContext("2d");
 
-				canvas.width = size.width;
-				canvas.height = size.height;
+				canvas.width = size.width * scale;
+				canvas.height = size.height * scale;
 				ctx.drawImage(img, 0, 0, (size.width * scale), (size.height * scale));
 
 				callback(canvas.toDataURL(mimeType));
