@@ -13299,7 +13299,7 @@ extend(Chart_Chart.prototype, {
       img.crosssOrigin = "Anonymous", img.onload = function () {
         var canvas = document.createElement("canvas"),
             ctx = canvas.getContext("2d");
-        canvas.width = size.width, canvas.height = size.height, ctx.drawImage(img, 0, 0, size.width * scale, size.height * scale), callback(canvas.toDataURL(mimeType));
+        canvas.width = size.width * scale, canvas.height = size.height * scale, ctx.drawImage(img, 0, 0, size.width * scale, size.height * scale), callback(canvas.toDataURL(mimeType));
       }, img.src = svgDataUrl;
     }
 
