@@ -33,10 +33,10 @@ const nodeToSvgDataUrl = (node, size) => {
 	clone.setAttribute("xmlns", d3Namespaces.xhtml);
 
 	const nodeXml = new XMLSerializer().serializeToString(clone);
-
+	
 	// foreignObject not supported in IE11 and below
 	// https://msdn.microsoft.com/en-us/library/hh834675(v=vs.85).aspx
-	const dataStr = `<svg xmlns="${d3Namespaces.svg}" width="${size.width * 1.6}" height="${size.height * 1.6}">
+	const dataStr = `<svg xmlns="${d3Namespaces.svg}" width="${size.width}" height="${size.height}">
 			<foreignObject width="100%" height="100%">
 				<style>${cssText.join("\n")}</style>
 				${nodeXml.replace(/(url\()[^#]+/g, "$1")}
@@ -75,9 +75,9 @@ extend(Chart.prototype, {
 	 */
 	export(mimeType, callback) {
 		const $$ = this.internal;
-		const size = {width: $$.currentWidth, height: $$.currentHeight};
+		const size = {width: ($$.currentWidth * 1.6), height: ($$.currentHeight * 1.6)};
 		const svgDataUrl = nodeToSvgDataUrl(this.element, size);
-
+		
 		if (isFunction(callback)) {
 			const img = new Image();
 
@@ -86,8 +86,8 @@ extend(Chart.prototype, {
 				const canvas = document.createElement("canvas");
 				const ctx = canvas.getContext("2d");
 
-				canvas.width = size.width * 1.6;
-				canvas.height = size.height * 1.6;
+				canvas.width = size.width;
+				canvas.height = size.height;
 				ctx.drawImage(img, 0, 0);
 
 				callback(canvas.toDataURL(mimeType));
