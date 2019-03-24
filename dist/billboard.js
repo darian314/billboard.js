@@ -13296,7 +13296,7 @@ extend(Chart_Chart.prototype, {
 
     if (isFunction(callback)) {
       var img = new Image();
-      img.crosssOrigin = "Anonymous", img.onload = function () {
+      img.crossOrigin = "Anonymous", img.onload = function () {
         var canvas = document.createElement("canvas"),
             ctx = canvas.getContext("2d");
         canvas.width = size.width * scale, canvas.height = size.height * scale, ctx.drawImage(img, 0, 0, size.width * scale, size.height * scale), callback(canvas.toDataURL(mimeType));
