@@ -81,7 +81,7 @@ extend(Chart.prototype, {
 		if (isFunction(callback)) {
 			const img = new Image();
 
-			img.crosssOrigin = "Anonymous";
+			img.crossOrigin = "Anonymous";
 			img.onload = () => {
 				const canvas = document.createElement("canvas");
 				const ctx = canvas.getContext("2d");
