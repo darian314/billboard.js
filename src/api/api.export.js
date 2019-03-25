@@ -88,6 +88,10 @@ extend(Chart.prototype, {
 
 				canvas.width = size.width * scale;
 				canvas.height = size.height * scale;
+				
+				ctx.fillStyle = 'white';
+				ctx.fillRect(0, 0, canvas.width, canvas.height);
+				
 				ctx.drawImage(img, 0, 0, (size.width * scale), (size.height * scale));
 
 				callback(canvas.toDataURL(mimeType));
